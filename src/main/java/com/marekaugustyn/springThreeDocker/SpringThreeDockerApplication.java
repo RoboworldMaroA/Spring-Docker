@@ -8,7 +8,8 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("api/v1/customers")
+@RequestMapping(value={"api/v1/customers","customers"})
+@CrossOrigin(origins = "*")
 public class SpringThreeDockerApplication {
 
     //get data from Customer Repository, this class allows you to get a data from database
@@ -31,7 +32,7 @@ public class SpringThreeDockerApplication {
 
     //????????????????????????????????????????????????????????????????????
 	//this record could be separate class with the setters and getters
-	//Why we ca not use same class customer that we have implemented????????????
+	//Why we can not use same class customer that we have implemented????????????
 	record NewCustomerRequest(
 			String name,
 			String email,
@@ -40,7 +41,7 @@ public class SpringThreeDockerApplication {
 
 	@PostMapping
 	public void addCustomer(@RequestBody NewCustomerRequest request){
-		//create customer object so we have acces to the elements in the customer class
+		//create customer object, so we have access to the elements in the customer class
 		Customer customer = new Customer();
 		//get a name from customer and save to the name in the customer
 		customer.setName(request.name());
